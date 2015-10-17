@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: f078014ce2f419549bfe639e0f968f3a
+timeCreated: 1445035613
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cherokeespritesheet_0
+    21300002: Cherokeespritesheet_1
+    21300004: Cherokeespritesheet_2
+    21300006: Cherokeespritesheet_3
+    21300008: Cherokeespritesheet_4
+    21300010: Cherokeespritesheet_5
+    21300012: Cherokeespritesheet_6
+    21300014: Cherokeespritesheet_7
+    21300016: Cherokeespritesheet_8
+    21300018: Cherokeespritesheet_9
+    21300020: Cherokeespritesheet_10
+    21300022: Cherokeespritesheet_11
+    21300024: Cherokeespritesheet_12
+    21300026: Cherokeespritesheet_13
+    21300028: Cherokeespritesheet_14
+    21300030: Cherokeespritesheet_15
+    21300032: Cherokeespritesheet_16
+    21300034: Cherokeespritesheet_17
+    21300036: Cherokeespritesheet_18
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Cherokeespritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1734
+        width: 144
+        height: 277
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1734
+        width: 134
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 1734
+        width: 184
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1414
+        width: 232
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 241}
+    - name: Cherokeespritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 1414
+        width: 206
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1414
+        width: 164
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1094
+        width: 232
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 1094
+        width: 206
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 1094
+        width: 270
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 772
+        width: 263
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 774
+        width: 258
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 772
+        width: 213
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 418
+        width: 157
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 508
+        width: 173
+        height: 259
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 632
+        width: 4
+        height: 12
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 464
+        width: 177
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 496
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 114
+        width: 177
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Cherokeespritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 68
+        width: 247
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

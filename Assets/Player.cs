@@ -14,8 +14,8 @@ public class Player : MonoBehaviour {
 
     public GameObject maincamera;
 
-    Vector3 DEFAULT_SCALE = new Vector3(1.0f,1.0f,1.0f);
-    Vector3 SLIDE_SCALE = new Vector3(1.0f, 0.5f, 1.0f);
+    Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
+    Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
 
     Vector3 Velocity;
     float slidetimer;
@@ -85,14 +85,14 @@ public class Player : MonoBehaviour {
 
         Vector2 Acceleration = Vector2.zero;
         Acceleration += new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f) * ACCEL_RATE;
-        //Debug.Log(Velocity);
         Acceleration.x -= (Velocity.x - 50.0f) * DECEL_RATE;
 
-        if (Physics2D.Raycast(transform.localPosition - Vector3.right * transform.localScale.x / 2.0f, -Vector2.up, transform.localScale.y * 1.01f / 2.0f) ||
-            Physics2D.Raycast(transform.localPosition + Vector3.right * transform.localScale.x / 2.0f, -Vector2.up, transform.localScale.y * 1.01f / 2.0f)) {
+        //Debug.DrawLine(transform.localPosition + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, transform.localPosition - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f - Vector3.up * 10.0f);
+
+        if (Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f) ||
+            Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f)) {
             OnTheGround = true;
         }
-        Debug.Log(GetComponentInChildren<SlideCheck>().cant);
 
         if (OnTheGround) {
             if (lookslikeweregonnahavetojump) {
@@ -117,35 +117,28 @@ public class Player : MonoBehaviour {
                 slidetimer += Time.fixedDeltaTime;
                 GetComponents<BoxCollider2D>()[0].size = SLIDE_SCALE;
                 if (!slidelocationadjustlock) {
-                    transform.localPosition = GetComponent<Rigidbody2D>().transform.localPosition +
-                        -2.0f * Vector3.up;
+                    GetComponents<BoxCollider2D>()[0].offset -= new Vector2(0.0f, SLIDE_SCALE.y / 2.0f);
                     slidelocationadjustlock = true;
                 }
             } else {
-                justslide = false;
+                //justslide = false;
             }
         } else {
             slidetimer = 0.0f;
             GetComponents<BoxCollider2D>()[0].size = DEFAULT_SCALE;
             if (slidelocationadjustlock) {
-                transform.localPosition = GetComponent<Rigidbody2D>().transform.localPosition +
-                    2.0f * Vector3.up;
+                GetComponents<BoxCollider2D>()[0].offset += new Vector2(0.0f, SLIDE_SCALE.y / 2.0f);
                 slidelocationadjustlock = false;
             }
         }
 
+        GetComponent<Animator>().SetFloat("Velocity", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
+        GetComponent<Animator>().SetBool("Jump", !OnTheGround || lookslikeweregonnahavetojump || (GetComponent<Rigidbody2D>().velocity.y > 0.2f));
+        GetComponent<Animator>().SetBool("Slide", justslide);
+
         OnTheGround = false;
         lookslikeweregonnahavetojump = false;
         unjump = false;
-
-        if (justslide) {
-            GetComponent<SpriteRenderer>().sprite = slidesprite;
-        }
-
-        if (!justslide) {
-            GetComponent<SpriteRenderer>().sprite = standsprite;
-        }
-
 	}
 
     void OnTriggerExit2D(Collider2D other)
