@@ -18,6 +18,19 @@ public class CameraMove : MonoBehaviour {
 	
 	}
 
+    public void Pause()
+    {
+        GetComponent<Rigidbody2D>().Sleep();
+    }
+
+    public void Unpause()
+    {
+        if (GetComponent<Rigidbody2D>().IsSleeping()) {
+            GetComponent<Rigidbody2D>().WakeUp();
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(50.0f, 0.0f), ForceMode2D.Impulse);
+        }
+    }
+
     void FixedUpdate()
     {
     }

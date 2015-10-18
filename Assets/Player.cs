@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
@@ -11,8 +12,10 @@ public class Player : MonoBehaviour {
 
     public Sprite standsprite;
     public Sprite slidesprite;
-
+    
     public GameObject maincamera;
+    public CanvasGroup docdisplay;
+    public Text doctext;
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour {
     bool OnTheGround;
     bool slidelocationadjustlock;
     bool cantstopwontstop;
+    bool zawarudo;
 
 	// Use this for initialization
 	void Start () {
@@ -59,7 +63,23 @@ public class Player : MonoBehaviour {
             justslide = false;
         }
     }
-
+    
+    public void Pause()
+    {
+        zawarudo = true;
+        GetComponent<Rigidbody2D>().Sleep();
+        maincamera.GetComponent<CameraMove>().Pause();
+    }
+    
+    public void Unpause()
+    {
+        zawarudo = false;
+        GetComponent<Rigidbody2D>().WakeUp();
+        maincamera.GetComponent<CameraMove>().Unpause();
+        docdisplay.alpha = 0.0f;
+        docdisplay.interactable = false;
+    }
+           
     void Update()
     {
         //Touch t = Input.touches[0];
@@ -75,11 +95,19 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space)) {
             UnJump();
         }
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            Unpause();
+        }
     }
 	
 	// Update is called once per frame
     void FixedUpdate()
     {
+
+        if (zawarudo) {
+            GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
+            return;
+        }
 
         Velocity = GetComponent<Rigidbody2D>().velocity;
 
@@ -135,11 +163,23 @@ public class Player : MonoBehaviour {
         GetComponent<Animator>().SetFloat("Velocity", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
         GetComponent<Animator>().SetBool("Jump", !OnTheGround || lookslikeweregonnahavetojump || (GetComponent<Rigidbody2D>().velocity.y > 0.2f));
         GetComponent<Animator>().SetBool("Slide", justslide);
-
+        GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
+        
         OnTheGround = false;
         lookslikeweregonnahavetojump = false;
         unjump = false;
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Collectable") {
+            other.gameObject.GetComponent<Document>().Hide();
+            Pause();
+            docdisplay.alpha = 1.0f;
+            docdisplay.interactable = true;
+            doctext.text = other.gameObject.GetComponent<Document>().text;
+        }
+    }
 
     void OnTriggerExit2D(Collider2D other)
     {
