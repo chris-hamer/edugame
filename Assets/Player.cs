@@ -40,6 +40,11 @@ public class Player : MonoBehaviour {
         transform.position = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
+    public void CharSelect(int n)
+    {
+        GetComponent<Animator>().SetInteger("Character", n);
+    }
+
     public void Jump()
     {
         if (!GetComponentInChildren<SlideCheck>().cant) {

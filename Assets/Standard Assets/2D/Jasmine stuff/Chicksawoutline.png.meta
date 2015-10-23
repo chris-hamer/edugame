@@ -1,13 +1,33 @@
 fileFormatVersion: 2
 guid: 480c11081fa444946b7260392654589f
-timeCreated: 1445136279
+timeCreated: 1445639117
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Chicksawoutline_0
+    21300002: Chicksawoutline_1
+    21300004: Chicksawoutline_2
+    21300006: Chicksawoutline_3
+    21300008: Chicksawoutline_4
+    21300010: Chicksawoutline_5
+    21300012: Chicksawoutline_6
+    21300014: Chicksawoutline_7
+    21300016: Chicksawoutline_8
+    21300018: Chicksawoutline_9
+    21300020: Chicksawoutline_10
+    21300022: Chicksawoutline_11
+    21300024: Chicksawoutline_12
+    21300026: Chicksawoutline_13
+    21300028: Chicksawoutline_14
+    21300030: Chicksawoutline_15
+    21300032: Chicksawoutline_16
+    21300034: Chicksawoutline_17
+    21300036: Chicksawoutline_18
+    21300038: Chicksawoutline_19
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -29,8 +49,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 2
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +58,198 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Chicksawoutline_0
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1692
+        width: 178
+        height: 259
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_1
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1782
+        width: 232
+        height: 243
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_3
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1738
+        width: 248
+        height: 273
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_4
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1388
+        width: 248
+        height: 274
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_5
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 1388
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_6
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 1340
+        width: 256
+        height: 286
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_7
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 1378
+        width: 163
+        height: 322
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1012
+        width: 192
+        height: 295
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_9
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 1012
+        width: 186
+        height: 322
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_11
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 1013
+        width: 238
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_12
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 693
+        width: 213
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_13
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 693
+        width: 180
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_14
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 693
+        width: 238
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_15
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 373
+        width: 211
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_16
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 373
+        width: 286
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 372
+        width: 291
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_18
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 287
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Chicksawoutline_19
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 68
+        width: 252
+        height: 300
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
