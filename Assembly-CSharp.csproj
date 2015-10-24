@@ -49,6 +49,7 @@
      <Compile Include="Assets\Document.cs" />
      <Compile Include="Assets\ExitButton.cs" />
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\Quiz.cs" />
      <Compile Include="Assets\SlideCheck.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">

@@ -12,10 +12,16 @@ public class Player : MonoBehaviour {
 
     public Sprite standsprite;
     public Sprite slidesprite;
-    
+
     public GameObject maincamera;
     public CanvasGroup docdisplay;
     public Text doctext;
+    public CanvasGroup quizdisplay;
+    public Text quiztext;
+    public Text quiza;
+    public Text quizb;
+    public Text quizc;
+    public Text quizd;
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
@@ -82,7 +88,11 @@ public class Player : MonoBehaviour {
         GetComponent<Rigidbody2D>().WakeUp();
         maincamera.GetComponent<CameraMove>().Unpause();
         docdisplay.alpha = 0.0f;
+        docdisplay.blocksRaycasts = false;
         docdisplay.interactable = false;
+        quizdisplay.alpha = 0.0f;
+        quizdisplay.blocksRaycasts = false;
+        quizdisplay.interactable = false;
     }
            
     void Update()
@@ -181,8 +191,21 @@ public class Player : MonoBehaviour {
             other.gameObject.GetComponent<Document>().Hide();
             Pause();
             docdisplay.alpha = 1.0f;
+            docdisplay.blocksRaycasts = true;
             docdisplay.interactable = true;
             doctext.text = other.gameObject.GetComponent<Document>().text;
+        }
+        if (other.gameObject.tag == "Quiz") {
+            other.gameObject.GetComponent<Quiz>().Hide();
+            Pause();
+            quizdisplay.alpha = 1.0f;
+            quizdisplay.blocksRaycasts = true;
+            quizdisplay.interactable = true;
+            quiztext.text = other.gameObject.GetComponent<Quiz>().question;
+            quiza.text = other.gameObject.GetComponent<Quiz>().a;
+            quizb.text = other.gameObject.GetComponent<Quiz>().b;
+            quizc.text = other.gameObject.GetComponent<Quiz>().c;
+            quizd.text = other.gameObject.GetComponent<Quiz>().d;
         }
     }
 
