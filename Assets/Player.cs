@@ -6,8 +6,9 @@ public class Player : MonoBehaviour {
 
     float ACCEL_RATE = 10.0f;
     float DECEL_RATE = 0.175f;
-    float JUMP_POWER = 80.0f;
+    float JUMP_POWER = 100.0f;
     float UNJUMP_RATE = 0.25f;
+    float CENTERING_FORCE_SCALE = 1.5f;
     float MAX_SLIDE_TIME = 0.5f;
 
     public Sprite standsprite;
@@ -38,7 +39,6 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 	}
 
     void OnEnable()
@@ -125,10 +125,10 @@ public class Player : MonoBehaviour {
         }
 
         Velocity = GetComponent<Rigidbody2D>().velocity;
-
         Vector2 Acceleration = Vector2.zero;
+        float test = maincamera.transform.position.x - transform.position.x;
         Acceleration += new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f) * ACCEL_RATE;
-        Acceleration.x -= (Velocity.x - 50.0f) * DECEL_RATE;
+        Acceleration.x -= (Velocity.x - 50.0f - test * CENTERING_FORCE_SCALE) * DECEL_RATE;
 
         //Debug.DrawLine(transform.localPosition + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, transform.localPosition - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f - Vector3.up * 10.0f);
 
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour {
 
         if (OnTheGround) {
             if (lookslikeweregonnahavetojump) {
-                Acceleration.y += JUMP_POWER;
+                Acceleration.y = JUMP_POWER;
                 OnTheGround = false;
                 justslide = false;
             }
