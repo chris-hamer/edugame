@@ -13,7 +13,7 @@ public class Quiz : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Debug.Log(transform.localPosition);
+
     }
 
     public void Hide()
