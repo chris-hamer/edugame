@@ -23,6 +23,10 @@ public class Player : MonoBehaviour {
     public Text quizb;
     public Text quizc;
     public Text quizd;
+    public Button goback;
+    int correct;
+    Quiz currentquiz;
+
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
@@ -81,7 +85,21 @@ public class Player : MonoBehaviour {
         GetComponent<Rigidbody2D>().Sleep();
         maincamera.GetComponent<CameraMove>().Pause();
     }
-    
+
+    public void QuizUnpause(string selected)
+    {
+        if (selected == currentquiz.correct) {
+            currentquiz.Hide();
+            correct++;
+            if (correct >= 5) {
+                goback.onClick.Invoke();
+            }
+        } else {
+            currentquiz.timer = 0.0f;
+        }
+        Unpause();
+    }
+
     public void Unpause()
     {
         zawarudo = false;
@@ -188,15 +206,15 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Collectable") {
-            other.gameObject.GetComponent<Document>().Hide();
             Pause();
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
             docdisplay.interactable = true;
             doctext.text = other.gameObject.GetComponent<Document>().text;
+            other.gameObject.GetComponent<Document>().Hide();
         }
         if (other.gameObject.tag == "Quiz") {
-            other.gameObject.GetComponent<Quiz>().Hide();
+            currentquiz = other.gameObject.GetComponent<Quiz>();
             Pause();
             quizdisplay.alpha = 1.0f;
             quizdisplay.blocksRaycasts = true;
