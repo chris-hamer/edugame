@@ -1,13 +1,30 @@
 fileFormatVersion: 2
 guid: a3230b6381d8c450d9beb97924c0f688
-timeCreated: 1446191328
+timeCreated: 1446239970
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Seminolespritesheetoutline_0
+    21300002: Seminolespritesheetoutline_1
+    21300004: Seminolespritesheetoutline_2
+    21300006: Seminolespritesheetoutline_3
+    21300008: Seminolespritesheetoutline_4
+    21300010: Seminolespritesheetoutline_5
+    21300012: Seminolespritesheetoutline_6
+    21300014: Seminolespritesheetoutline_7
+    21300016: Seminolespritesheetoutline_8
+    21300018: Seminolespritesheetoutline_9
+    21300020: Seminolespritesheetoutline_10
+    21300022: Seminolespritesheetoutline_11
+    21300024: Seminolespritesheetoutline_12
+    21300026: Seminolespritesheetoutline_13
+    21300028: Seminolespritesheetoutline_14
+    21300030: Seminolespritesheetoutline_15
+    21300032: Seminolespritesheetoutline_16
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -29,8 +46,8 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 2
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +55,188 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Seminolespritesheetoutline_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1720
+        width: 278
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_1
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 1722
+        width: 272
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_2
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 1722
+        width: 281
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_3
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1400
+        width: 232
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_4
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 1400
+        width: 156
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_5
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1400
+        width: 159
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_6
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1080
+        width: 234
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1082
+        width: 254
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_8
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1082
+        width: 234
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 762
+        width: 201
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_10
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 762
+        width: 250
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_11
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 762
+        width: 223
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_12
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 412
+        width: 196
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_13
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 458
+        width: 215
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_14
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 453
+        width: 246
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_15
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 103
+        width: 246
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Seminolespritesheetoutline_16
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 60
+        width: 259
+        height: 298
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 
