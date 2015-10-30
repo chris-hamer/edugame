@@ -3,13 +3,21 @@ using System.Collections;
 
 public class imlazy : MonoBehaviour {
 
-    public GameObject lvl;
+    public GameObject lvl1;
+    public GameObject lvl2;
+    public GameObject lvl3;
+    public GameObject lvl4;
+    public GameObject lvl5;
     public GameObject menu;
     public GameObject camera;
     
 	// Use this for initialization
 	void Start () {
-        lvl.SetActive(false);
+        lvl1.SetActive(false);
+        lvl2.SetActive(false);
+        lvl3.SetActive(false);
+        lvl4.SetActive(false);
+        lvl5.SetActive(false);
         camera.SetActive(false);
         menu.SetActive(true);
 	}
