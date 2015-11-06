@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public Sprite standsprite;
     public Sprite slidesprite;
 
+    public GameObject doit;
+
     public GameObject maincamera;
     public CanvasGroup docdisplay;
     public Text doctext;
@@ -26,7 +28,6 @@ public class Player : MonoBehaviour {
     public Button goback;
     int correct;
     Quiz currentquiz;
-
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour {
 
     void OnEnable()
     {
-        transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        correct = 0;
+        transform.position = new Vector3(-42.0f, 75.0f, 0.0f);
     }
 
     public void CharSelect(int n)
@@ -148,15 +150,17 @@ public class Player : MonoBehaviour {
         Acceleration += new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f) * ACCEL_RATE;
         Acceleration.x -= (Velocity.x - 50.0f - test * CENTERING_FORCE_SCALE) * DECEL_RATE;
 
-        //Debug.DrawLine(transform.localPosition + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, transform.localPosition - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f - Vector3.up * 10.0f);
-
         if (Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f) ||
             Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f)) {
             OnTheGround = true;
+            //GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -30.0f);
+            Velocity.y = -50.0f;
         }
 
         if (OnTheGround) {
             if (lookslikeweregonnahavetojump) {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
+                //Velocity.y = 0.0f;
                 Acceleration.y = JUMP_POWER;
                 OnTheGround = false;
                 justslide = false;
@@ -194,10 +198,10 @@ public class Player : MonoBehaviour {
         }
 
         GetComponent<Animator>().SetFloat("Velocity", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
-        GetComponent<Animator>().SetBool("Jump", !OnTheGround || lookslikeweregonnahavetojump || (GetComponent<Rigidbody2D>().velocity.y > 0.2f));
+        GetComponent<Animator>().SetBool("Jump", !OnTheGround || lookslikeweregonnahavetojump);
         GetComponent<Animator>().SetBool("Slide", justslide);
         GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
-        
+
         OnTheGround = false;
         lookslikeweregonnahavetojump = false;
         unjump = false;
@@ -230,9 +234,14 @@ public class Player : MonoBehaviour {
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Inbounds") {
-            transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-            maincamera.transform.position = new Vector3(0.0f,0.0f,-10.0f);
+            doit.GetComponent<huh>().ItsTime();
         }
+    }
+
+    public void Respawn()
+    {
+        transform.position = new Vector3(-42.0f, 75.0f, 0.0f);
+        maincamera.transform.position = new Vector3(0.0f, 0.0f, -10.0f);
     }
 
 }
