@@ -14,6 +14,11 @@ public class Player : MonoBehaviour {
     public Sprite standsprite;
     public Sprite slidesprite;
 
+    public AudioSource snd_jump;
+    public AudioSource snd_slide;
+    public AudioSource snd_fall;
+    public AudioSource snd_get;
+
     public GameObject doit;
 
     public GameObject maincamera;
@@ -26,13 +31,17 @@ public class Player : MonoBehaviour {
     public Text quizc;
     public Text quizd;
     public Button goback;
+    public int wins = 0;
     int correct;
     Quiz currentquiz;
+
+    public GameObject sw2;
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
 
     Vector3 Velocity;
+    Vector3 oldvelocity;
     float slidetimer;
     bool lookslikeweregonnahavetojump;
     bool justslide;
@@ -83,6 +92,7 @@ public class Player : MonoBehaviour {
     
     public void Pause()
     {
+        oldvelocity = GetComponent<Rigidbody2D>().velocity;
         zawarudo = true;
         GetComponent<Rigidbody2D>().Sleep();
         maincamera.GetComponent<CameraMove>().Pause();
@@ -94,7 +104,8 @@ public class Player : MonoBehaviour {
             currentquiz.Hide();
             correct++;
             if (correct >= 5) {
-                goback.onClick.Invoke();
+                wins++;
+                sw2.GetComponent<huh>().ItsTime();
             }
         } else {
             currentquiz.timer = 0.0f;
@@ -104,9 +115,11 @@ public class Player : MonoBehaviour {
 
     public void Unpause()
     {
+        snd_get.Stop();
         zawarudo = false;
         GetComponent<Rigidbody2D>().WakeUp();
         maincamera.GetComponent<CameraMove>().Unpause();
+        GetComponent<Rigidbody2D>().velocity = oldvelocity;
         docdisplay.alpha = 0.0f;
         docdisplay.blocksRaycasts = false;
         docdisplay.interactable = false;
@@ -159,6 +172,7 @@ public class Player : MonoBehaviour {
 
         if (OnTheGround) {
             if (lookslikeweregonnahavetojump) {
+                snd_jump.Play();
                 GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
                 //Velocity.y = 0.0f;
                 Acceleration.y = JUMP_POWER;
@@ -182,6 +196,7 @@ public class Player : MonoBehaviour {
                 slidetimer += Time.fixedDeltaTime;
                 GetComponents<BoxCollider2D>()[0].size = SLIDE_SCALE;
                 if (!slidelocationadjustlock) {
+                    snd_slide.Play();
                     GetComponents<BoxCollider2D>()[0].offset -= new Vector2(0.0f, SLIDE_SCALE.y / 2.0f);
                     slidelocationadjustlock = true;
                 }
@@ -192,6 +207,7 @@ public class Player : MonoBehaviour {
             slidetimer = 0.0f;
             GetComponents<BoxCollider2D>()[0].size = DEFAULT_SCALE;
             if (slidelocationadjustlock) {
+                snd_slide.Stop();
                 GetComponents<BoxCollider2D>()[0].offset += new Vector2(0.0f, SLIDE_SCALE.y / 2.0f);
                 slidelocationadjustlock = false;
             }
@@ -210,6 +226,7 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Collectable") {
+            snd_get.Play();
             Pause();
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
@@ -228,6 +245,9 @@ public class Player : MonoBehaviour {
             quizb.text = other.gameObject.GetComponent<Quiz>().b;
             quizc.text = other.gameObject.GetComponent<Quiz>().c;
             quizd.text = other.gameObject.GetComponent<Quiz>().d;
+        }
+        if (other.gameObject.tag == "Getback") {
+            transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
         }
     }
 
