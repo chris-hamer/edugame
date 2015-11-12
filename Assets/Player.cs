@@ -36,6 +36,8 @@ public class Player : MonoBehaviour {
     int correct;
     Quiz currentquiz;
     public int ndocs;
+    bool sanic;
+    float endofleveltimer;
 
     public GameObject sw2;
 
@@ -59,7 +61,9 @@ public class Player : MonoBehaviour {
 
     void OnEnable()
     {
+        sanic = false;
         correct = 0;
+        endofleveltimer = -1.0f;
         ndocs = 0;
         transform.position = new Vector3(-42.0f, 75.0f, 0.0f);
     }
@@ -154,7 +158,12 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
     void FixedUpdate()
     {
-
+        if (endofleveltimer >= 0.0f) {
+            endofleveltimer += Time.fixedDeltaTime;
+        }
+        if (endofleveltimer > 3.0f) {
+            sw2.GetComponent<huh>().ItsTime();
+        }
         if (zawarudo) {
             GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
             return;
@@ -164,7 +173,9 @@ public class Player : MonoBehaviour {
         Vector2 Acceleration = Vector2.zero;
         float test = maincamera.transform.position.x - transform.position.x;
         Acceleration += new Vector2(Input.GetAxisRaw("Horizontal"), 0.0f) * ACCEL_RATE;
-        Acceleration.x -= (Velocity.x - 50.0f - test * CENTERING_FORCE_SCALE) * DECEL_RATE;
+        if (!sanic) {
+            Acceleration.x -= (Velocity.x - 50.0f - test * CENTERING_FORCE_SCALE) * DECEL_RATE;
+        }
 
         if (Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f - Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f) ||
             Physics2D.Raycast(transform.localPosition + (Vector3)GetComponent<BoxCollider2D>().offset * 8.0f + Vector3.right * transform.localScale.x * GetComponent<BoxCollider2D>().size.x / 2.0f + -Vector3.up * transform.localScale.y * GetComponent<BoxCollider2D>().size.y / 2.0f, -Vector2.up, 0.75f)) {
@@ -256,7 +267,9 @@ public class Player : MonoBehaviour {
         if (other.gameObject.tag == "Getback") {
             if (ndocs >= 5) {
                 wins++;
-                sw2.GetComponent<huh>().ItsTime();
+                maincamera.GetComponent<CameraMove>().sanic();
+                sanic = true;
+                endofleveltimer = 0.0f;
             } else {
                 transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
             }
@@ -265,7 +278,7 @@ public class Player : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Inbounds") {
+        if (other.gameObject.tag == "Inbounds" && !sanic) {
             doit.GetComponent<huh>().ItsTime();
         }
     }

@@ -32,6 +32,11 @@ public class CameraMove : MonoBehaviour {
         }
     }
 
+    public void sanic()
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
     void FixedUpdate()
     {
     }
