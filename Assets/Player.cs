@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
     public int wins = 0;
     int correct;
     Quiz currentquiz;
+    public int ndocs;
 
     public GameObject sw2;
 
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour {
     void OnEnable()
     {
         correct = 0;
+        ndocs = 0;
         transform.position = new Vector3(-42.0f, 75.0f, 0.0f);
     }
 
@@ -230,6 +232,7 @@ public class Player : MonoBehaviour {
             if (!other.gameObject.GetComponent<Document>().DisableSound) {
                 snd_get.Play();
             }
+            ndocs++;
             Pause();
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
@@ -251,7 +254,12 @@ public class Player : MonoBehaviour {
             quizd.text = other.gameObject.GetComponent<Quiz>().d;
         }
         if (other.gameObject.tag == "Getback") {
-            transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
+            if (ndocs >= 5) {
+                wins++;
+                sw2.GetComponent<huh>().ItsTime();
+            } else {
+                transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
+            }
         }
     }
 
