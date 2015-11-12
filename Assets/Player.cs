@@ -122,6 +122,11 @@ public class Player : MonoBehaviour {
         maincamera.GetComponent<CameraMove>().Pause();
     }
 
+    public void ResetDocs()
+    {
+        ndocs = 0;
+    }
+
     public void QuizUnpause(string selected)
     {
         Unpause();
@@ -171,8 +176,11 @@ public class Player : MonoBehaviour {
             endofleveltimer += Time.fixedDeltaTime;
         }
         if (endofleveltimer > 4.0f) {
+            wins++;
+            ndocs = 0;
             QuizMenu.GetComponent<QuizController>().NewQuizSession(currentcharacter); 
             sw8.GetComponent<huh>().ItsTime();
+            endofleveltimer = -1.0f;
         }
         if (zawarudo) {
             GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
@@ -261,23 +269,17 @@ public class Player : MonoBehaviour {
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
             docdisplay.interactable = true;
+            if (currentcharacter == 0) {
+                doctext.text = other.gameObject.GetComponent<Document>().text;
+            }
             docimage.sprite = other.gameObject.GetComponent<Document>().image;
             other.gameObject.GetComponent<Document>().Hide();
         }
-        if (other.gameObject.tag == "Quiz") {
-            Pause();
-            quizdisplay.alpha = 1.0f;
-            quizdisplay.blocksRaycasts = true;
-            quizdisplay.interactable = true;
-            quiztext.text = other.gameObject.GetComponent<Quiz>().question;
-            quiza.text = other.gameObject.GetComponent<Quiz>().a;
-            quizb.text = other.gameObject.GetComponent<Quiz>().b;
-            quizc.text = other.gameObject.GetComponent<Quiz>().c;
-            quizd.text = other.gameObject.GetComponent<Quiz>().d;
+        if (other.gameObject.tag == "Dank") {
+            transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
         }
         if (other.gameObject.tag == "Getback") {
-            if (ndocs >= 5) {
-                wins++;
+            if (ndocs >= 6) {
                 maincamera.GetComponent<CameraMove>().sanic();
                 sanic = true;
                 endofleveltimer = 0.0f;

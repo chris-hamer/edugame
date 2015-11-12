@@ -50,7 +50,7 @@ public class Export : MonoBehaviour {
         }
         string macAddress = GetMacAddress();
 
-        using (FileStream fs = new FileStream("Trail of Tears.csv", FileMode.Create)) {
+        using (FileStream fs = new FileStream("/sdcard/Trail of Tears.csv", FileMode.Create)) {
             using (StreamWriter sw = new StreamWriter(fs)) {
                 sw.WriteLine("Game Name: Trail of Tears");
                 sw.WriteLine("MAC Address: " + macAddress);

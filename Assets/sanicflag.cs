@@ -14,7 +14,7 @@ public class sanicflag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (p.ndocs >= 5) {
+        if (p.ndocs >= 6) {
             GetComponent<SpriteRenderer>().sprite = win;
         } else {
             GetComponent<SpriteRenderer>().sprite = repeat;
