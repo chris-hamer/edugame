@@ -34,29 +34,22 @@ public class Export : MonoBehaviour {
         rating = r;
     }
 
+    private static string GetMacAddress()
+    {
+        // try to read the address from some file (this works on the Samsung Galaxy Tab 4 with Android 4.4.2)
+        const string l_filePath = "/sys/class/net/wlan0/address"; // substitutions for wlan0: ip6gre0 ip6tnl0 lo p2p0 sit0 wlan0
+        string l_contents = File.ReadAllText(l_filePath);
+        //Console.Write("Read from \"" + l_filePath + "\": " + l_contents);
+        return l_contents;
+    }
+
     public void Doit()
     {
         if (pass.text != password) {
             return;
         }
         NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-        string macAddress = "";
-
-        foreach (NetworkInterface adapter in nics) {
-            PhysicalAddress address = adapter.GetPhysicalAddress();
-            byte[] bytes = address.GetAddressBytes();
-            string mac = null;
-            for (int i = 0; i < bytes.Length; i++) {
-                mac = string.Concat(mac + (string.Format("{0}", bytes[i].ToString("X2"))));
-                if (i != bytes.Length - 1) {
-                    mac = string.Concat(mac + "-");
-                }
-            }
-
-            macAddress += mac + "\n";
-            break;
-
-        }
+        string macAddress = GetMacAddress();
 
         using (FileStream fs = new FileStream("Trail of Tears.csv", FileMode.Create)) {
             using (StreamWriter sw = new StreamWriter(fs)) {
