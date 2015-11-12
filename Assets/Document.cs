@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Document : MonoBehaviour {
 
     public string text;
+    public Sprite image;
+    public bool DisableSound;
     Vector3 originallocation;
 
 	// Use this for initialization

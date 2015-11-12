@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     public GameObject maincamera;
     public CanvasGroup docdisplay;
     public Text doctext;
+    public Image docimage;
     public CanvasGroup quizdisplay;
     public Text quiztext;
     public Text quiza;
@@ -226,12 +227,15 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Collectable") {
-            snd_get.Play();
+            if (!other.gameObject.GetComponent<Document>().DisableSound) {
+                snd_get.Play();
+            }
             Pause();
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
             docdisplay.interactable = true;
-            doctext.text = other.gameObject.GetComponent<Document>().text;
+            //doctext.text = other.gameObject.GetComponent<Document>().text;
+            docimage.sprite = other.gameObject.GetComponent<Document>().image;
             other.gameObject.GetComponent<Document>().Hide();
         }
         if (other.gameObject.tag == "Quiz") {
