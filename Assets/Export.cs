@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//////////
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
 using System.IO;
@@ -17,6 +19,7 @@ public class Export : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        int x = 0;
         starttime = System.DateTime.Now;
 	}
 	
