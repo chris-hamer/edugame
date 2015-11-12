@@ -21,6 +21,18 @@ public class Player : MonoBehaviour {
     public AudioSource snd_fall;
     public AudioSource snd_get;
 
+    public AudioSource music_cherokee;
+    public AudioSource music_chicksaw;
+    public AudioSource music_choctaw;
+    public AudioSource music_creek;
+    public AudioSource music_seminole;
+
+    public AudioSource winmusic;
+
+    AudioSource currentmusic;
+
+    public bool keepmenumusicon;
+
     public GameObject doit;
 
     public GameObject maincamera;
@@ -35,8 +47,6 @@ public class Player : MonoBehaviour {
     public Text quizd;
     public Button goback;
     public int wins = 0;
-    int correct;
-    Quiz currentquiz;
     public int ndocs;
     bool sanic;
     float endofleveltimer;
@@ -66,7 +76,6 @@ public class Player : MonoBehaviour {
     void OnEnable()
     {
         sanic = false;
-        correct = 0;
         endofleveltimer = -1.0f;
         ndocs = 0;
         transform.position = new Vector3(-42.0f, 75.0f, 0.0f);
@@ -76,6 +85,9 @@ public class Player : MonoBehaviour {
     {
         GetComponent<Animator>().SetInteger("Character", n);
         currentcharacter = n;
+        AudioSource[] temp = new AudioSource[] { music_creek, music_seminole, music_chicksaw, music_cherokee, music_choctaw };
+        currentmusic = temp[n];
+        currentmusic.Play();
     }
 
     public void Jump()
@@ -118,6 +130,7 @@ public class Player : MonoBehaviour {
     public void Unpause()
     {
         snd_get.Stop();
+        keepmenumusicon = false;
         zawarudo = false;
         GetComponent<Rigidbody2D>().WakeUp();
         maincamera.GetComponent<CameraMove>().Unpause();
@@ -128,6 +141,7 @@ public class Player : MonoBehaviour {
         quizdisplay.alpha = 0.0f;
         quizdisplay.blocksRaycasts = false;
         quizdisplay.interactable = false;
+        currentmusic.Play();
     }
            
     void Update()
@@ -156,7 +170,7 @@ public class Player : MonoBehaviour {
         if (endofleveltimer >= 0.0f) {
             endofleveltimer += Time.fixedDeltaTime;
         }
-        if (endofleveltimer > 3.0f) {
+        if (endofleveltimer > 4.0f) {
             QuizMenu.GetComponent<QuizController>().NewQuizSession(currentcharacter); 
             sw8.GetComponent<huh>().ItsTime();
         }
@@ -236,20 +250,21 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Collectable") {
+            currentmusic.Pause();
             if (!other.gameObject.GetComponent<Document>().DisableSound) {
                 snd_get.Play();
+            } else {
+                keepmenumusicon = true;
             }
             ndocs++;
             Pause();
             docdisplay.alpha = 1.0f;
             docdisplay.blocksRaycasts = true;
             docdisplay.interactable = true;
-            //doctext.text = other.gameObject.GetComponent<Document>().text;
             docimage.sprite = other.gameObject.GetComponent<Document>().image;
             other.gameObject.GetComponent<Document>().Hide();
         }
         if (other.gameObject.tag == "Quiz") {
-            currentquiz = other.gameObject.GetComponent<Quiz>();
             Pause();
             quizdisplay.alpha = 1.0f;
             quizdisplay.blocksRaycasts = true;
@@ -266,6 +281,8 @@ public class Player : MonoBehaviour {
                 maincamera.GetComponent<CameraMove>().sanic();
                 sanic = true;
                 endofleveltimer = 0.0f;
+                currentmusic.Stop();
+                winmusic.Play();
             } else {
                 transform.position = new Vector3(transform.position.x, -100.0f, transform.position.z);
             }

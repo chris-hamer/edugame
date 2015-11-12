@@ -48,7 +48,6 @@ public class Export : MonoBehaviour {
         if (pass.text != password) {
             return;
         }
-        NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
         string macAddress = GetMacAddress();
 
         using (FileStream fs = new FileStream("Trail of Tears.csv", FileMode.Create)) {

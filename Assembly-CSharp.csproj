@@ -55,6 +55,7 @@
      <Compile Include="Assets\SlideCheck.cs" />
      <Compile Include="Assets\huh.cs" />
      <Compile Include="Assets\imlazy.cs" />
+     <Compile Include="Assets\menumusicscript.cs" />
      <Compile Include="Assets\sanicflag.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
