@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public Sprite standsprite;
     public Sprite slidesprite;
 
+    public GameObject QuizMenu;
+
     public AudioSource snd_jump;
     public AudioSource snd_slide;
     public AudioSource snd_fall;
@@ -38,8 +40,10 @@ public class Player : MonoBehaviour {
     public int ndocs;
     bool sanic;
     float endofleveltimer;
+    int currentcharacter;
 
     public GameObject sw2;
+    public GameObject sw8;
 
     Vector3 DEFAULT_SCALE = new Vector3(0.7f,1.4f,1.0f);
     Vector3 SLIDE_SCALE = new Vector3(0.7f, 0.7f, 1.0f);
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour {
     public void CharSelect(int n)
     {
         GetComponent<Animator>().SetInteger("Character", n);
+        currentcharacter = n;
     }
 
     public void Jump()
@@ -107,16 +112,6 @@ public class Player : MonoBehaviour {
 
     public void QuizUnpause(string selected)
     {
-        if (selected == currentquiz.correct) {
-            currentquiz.Hide();
-            correct++;
-            if (correct >= 5) {
-                wins++;
-                sw2.GetComponent<huh>().ItsTime();
-            }
-        } else {
-            currentquiz.timer = 0.0f;
-        }
         Unpause();
     }
 
@@ -162,7 +157,8 @@ public class Player : MonoBehaviour {
             endofleveltimer += Time.fixedDeltaTime;
         }
         if (endofleveltimer > 3.0f) {
-            sw2.GetComponent<huh>().ItsTime();
+            QuizMenu.GetComponent<QuizController>().NewQuizSession(currentcharacter); 
+            sw8.GetComponent<huh>().ItsTime();
         }
         if (zawarudo) {
             GetComponent<Animator>().SetBool("WRYYYYYYYYYY", zawarudo);
