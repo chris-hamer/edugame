@@ -11,6 +11,9 @@ public class QuizController : MonoBehaviour {
     public Text currentc;
     public Text currentd;
 
+    public AudioSource right;
+    public AudioSource wrong;
+
     public GameObject wipe;
 
     public Sprite[] level_doc;
@@ -80,6 +83,9 @@ public class QuizController : MonoBehaviour {
     {
         if (ans == level_quiz[index].correct) {
             correct[index] = true;
+            right.Play();
+        } else {
+            wrong.Play();
         }
         foreach( bool i in correct ) {
             if (!i) {

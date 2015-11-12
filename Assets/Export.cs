@@ -12,6 +12,7 @@ public class Export : MonoBehaviour {
     public Player p;
     public int rating;
     public Slider s;
+    public AudioSource bleep;
     System.DateTime starttime;
 
 	// Use this for initialization
@@ -48,6 +49,7 @@ public class Export : MonoBehaviour {
         if (pass.text != password) {
             return;
         }
+        bleep.Play();
         string macAddress = GetMacAddress();
 
         using (FileStream fs = new FileStream("/sdcard/Trail of Tears.csv", FileMode.Create)) {
