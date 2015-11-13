@@ -4,6 +4,7 @@ using System.Collections;
 public class ExitButton : MonoBehaviour {
 
     GameObject player;
+    public Export aa;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,7 @@ public class ExitButton : MonoBehaviour {
 
     public void Exit()
     {
+        aa.Doit();
         Application.Quit();
     }
 }

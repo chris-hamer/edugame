@@ -6,12 +6,16 @@ public class QuizController : MonoBehaviour {
 
     public Player p;
 
+    public bool[] wins;
+
     public Image currentdoc;
     public Text currentquestion;
     public Text currenta;
     public Text currentb;
     public Text currentc;
     public Text currentd;
+
+    public int currentchar;
 
     public GameObject winscreen;
 
@@ -41,6 +45,7 @@ public class QuizController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         correct = new bool[] { false, false, false, false, false };
+        wins = new bool[] { false, false, false, false, false };
 	}
 
     public void NewQuizSession(int character)
@@ -49,6 +54,7 @@ public class QuizController : MonoBehaviour {
         Quiz[][] quizzes = new Quiz[][] { CreekQuizzes, SeminoleQuizzes, ChickasawQuizzes, CherokeeQuizzes, ChoctawQuizzes };
         level_doc = docs[character];
         level_quiz = quizzes[character];
+        currentchar = character;
         correct = new bool[] { false, false, false, false, false };
     }
 
@@ -97,11 +103,14 @@ public class QuizController : MonoBehaviour {
                 return;
             }
         }
-        if (p.wins == 5) {
-            winscreen.GetComponent<huh>().ItsTime();
-            return;
+        wins[currentchar] = true;
+        foreach (bool i in wins) {
+            if (!i) {
+                wipe.GetComponent<huh>().ItsTime();
+                return;
+            }
         }
-        wipe.GetComponent<huh>().ItsTime();
+        winscreen.GetComponent<huh>().ItsTime();
     }
 
 	// Update is called once per frame

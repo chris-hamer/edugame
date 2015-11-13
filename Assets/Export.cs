@@ -53,17 +53,20 @@ public class Export : MonoBehaviour {
             return;
         }
         bleep.Play();
-        string macAddress = GetMacAddress();
+        string macAddress = GetMacAddress().Trim();
 
-        using (FileStream fs = new FileStream("/storage/emulated/0/Documents/Trail of Tears.csv", FileMode.Create)) {
+        using (FileStream fs = new FileStream("/storage/emulated/0/Documents/Trail of Tears.csv", FileMode.Append)) {
             using (StreamWriter sw = new StreamWriter(fs)) {
-                sw.WriteLine("Game Name: Trail of Tears");
-                sw.WriteLine("MAC Address: " + macAddress);
-                sw.WriteLine("Start Session: " + starttime.ToString());
-                sw.WriteLine("End Session: " + System.DateTime.Now.ToString());
-                sw.WriteLine("Game Progress: " + p.wins + " levels completed");
-                sw.WriteLine("Rating: " + rating);
-                sw.WriteLine("Total Game Time: " + (System.DateTime.Now-starttime).ToString());
+                string a = "Trail of Tears," + macAddress + "," + starttime.ToString() + "," + System.DateTime.Now.ToString() + "," + p.wins + "," + rating + "," + (System.DateTime.Now - starttime).ToString();
+                sw.WriteLine(a);
+                Debug.Log(a);
+                //sw.WriteLine("Game Name: Trail of Tears");
+                //sw.WriteLine("MAC Address: " + macAddress);
+                //sw.WriteLine("Start Session: " + starttime.ToString());
+                //sw.WriteLine("End Session: " + System.DateTime.Now.ToString());
+                //sw.WriteLine("Game Progress: " + p.wins + " levels completed");
+                //sw.WriteLine("Rating: " + rating);
+                //sw.WriteLine("Total Game Time: " + (System.DateTime.Now-starttime).ToString());
                 sw.Close();
             }
 
