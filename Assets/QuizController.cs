@@ -4,12 +4,16 @@ using System.Collections;
 
 public class QuizController : MonoBehaviour {
 
+    public Player p;
+
     public Image currentdoc;
     public Text currentquestion;
     public Text currenta;
     public Text currentb;
     public Text currentc;
     public Text currentd;
+
+    public GameObject winscreen;
 
     public AudioSource right;
     public AudioSource wrong;
@@ -92,6 +96,10 @@ public class QuizController : MonoBehaviour {
                 Next();
                 return;
             }
+        }
+        if (p.wins == 5) {
+            winscreen.GetComponent<huh>().ItsTime();
+            return;
         }
         wipe.GetComponent<huh>().ItsTime();
     }

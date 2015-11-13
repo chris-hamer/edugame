@@ -172,6 +172,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
     void FixedUpdate()
     {
+        //wins = 5;
         if (endofleveltimer >= 0.0f) {
             endofleveltimer += Time.fixedDeltaTime;
         }
