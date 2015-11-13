@@ -55,7 +55,7 @@ public class Export : MonoBehaviour {
         bleep.Play();
         string macAddress = GetMacAddress();
 
-        using (FileStream fs = new FileStream("/sdcard/Trail of Tears.csv", FileMode.Create)) {
+        using (FileStream fs = new FileStream("/storage/emulated/0/Documents/Trail of Tears.csv", FileMode.Create)) {
             using (StreamWriter sw = new StreamWriter(fs)) {
                 sw.WriteLine("Game Name: Trail of Tears");
                 sw.WriteLine("MAC Address: " + macAddress);
