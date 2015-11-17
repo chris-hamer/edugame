@@ -18,6 +18,7 @@ public class ExitButton : MonoBehaviour {
 
     public void Exit()
     {
+        aa.bypass = true;
         aa.Doit();
         Application.Quit();
     }

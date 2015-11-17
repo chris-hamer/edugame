@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using System.IO;
 using UnityEngine.UI;
 using System.Net.NetworkInformation;
+using System;
 
 public class Export : MonoBehaviour {
 
@@ -14,6 +15,8 @@ public class Export : MonoBehaviour {
     public Player p;
     public int rating;
     public Slider s;
+    string path;
+    public bool bypass;
     public AudioSource bleep;
     System.DateTime starttime;
 
@@ -21,6 +24,7 @@ public class Export : MonoBehaviour {
 	void Start () {
         int x = 0;
         starttime = System.DateTime.Now;
+        SetPath();
 	}
 	
 	// Update is called once per frame
@@ -47,19 +51,57 @@ public class Export : MonoBehaviour {
         return l_contents;
     }
 
+    private string GetPath(string filename)
+    {
+        string path;
+        if (Application.platform == RuntimePlatform.Android) {
+            return "/storage/emulated/0/Agora/" + filename;
+        } else {
+            path = Application.dataPath;
+            path = path.Substring(0, path.LastIndexOf('/'));
+            return Path.Combine(path, filename);
+        }
+    }
+
+    public void SetPath()
+    {
+        string filename = "Trail of Tears.csv";
+        try {
+            Directory.CreateDirectory("/storage/emulated/0/Agora");
+            Debug.Log("Making Directory: " + "/storage/emulated/0/Agora");
+        } catch (Exception e) {
+            Debug.Log("Try 1: " + e.StackTrace);
+        }
+        try {
+            Directory.CreateDirectory("/storage/emulated/0/Agora/");
+            Debug.Log("Making Directory: " + "/storage/emulated/0/Agora/");
+        } catch (Exception e) {
+            Debug.Log("Try 2: " + e.StackTrace);
+        }
+        Debug.Log("Attempted directory making . . .");
+        path = GetPath(filename);
+    }
+
     public void Doit()
     {
-        if (pass.text != password) {
+        if (pass.text != password || !bypass) {
             return;
         }
+        
         bleep.Play();
         string macAddress = GetMacAddress().Trim();
 
-        using (FileStream fs = new FileStream("/storage/emulated/0/Documents/Trail of Tears.csv", FileMode.Append)) {
+        string a = "Trail of Tears," + macAddress + "," + starttime.ToString() + "," + System.DateTime.Now.ToString() + "," + p.wins + "," + rating + "," + (System.DateTime.Now - starttime).ToString();
+
+        if (!File.Exists(path)) {
+            a = "Game Name," + "MAC Address," + "Start Session," + "End Session," + "Game Progress," + "Rating," + "Total Game Time";
+        }
+
+        //using (FileStream fs = new FileStream("/storage/emulated/0/Documents/Trail of Tears.csv", FileMode.Append)) {
+        using (FileStream fs = new FileStream(path, FileMode.Append)) {
             using (StreamWriter sw = new StreamWriter(fs)) {
-                string a = "Trail of Tears," + macAddress + "," + starttime.ToString() + "," + System.DateTime.Now.ToString() + "," + p.wins + "," + rating + "," + (System.DateTime.Now - starttime).ToString();
                 sw.WriteLine(a);
-                Debug.Log(a);
+                //Debug.Log(a);
                 //sw.WriteLine("Game Name: Trail of Tears");
                 //sw.WriteLine("MAC Address: " + macAddress);
                 //sw.WriteLine("Start Session: " + starttime.ToString());
